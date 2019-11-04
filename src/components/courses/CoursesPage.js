@@ -45,9 +45,9 @@ CoursesPage.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state) {
+function mapStateToProps({ courses }) {
   return {
-    courses: state.courses
+    courses
   };
 }
 
