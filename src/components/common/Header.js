@@ -15,7 +15,7 @@ const Header = () => {
       </NavLink>
       {" | "}
       <NavLink to="/about" activeStyle={activeStyle}>
-        yeah About
+        About
       </NavLink>
     </nav>
   );
