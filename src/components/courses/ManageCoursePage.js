@@ -40,7 +40,6 @@ function ManageCoursePage({
   }
 
   function handleSave(event) {
-    console.log(course);
     event.preventDefault();
     saveCourse(course);
   }
