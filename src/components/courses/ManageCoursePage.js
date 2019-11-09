@@ -25,7 +25,6 @@ class ManageCoursePage extends React.Component {
     return (
       <>
         <h2>Manage Course</h2>
-        <CourseList courses={this.props.courses} />
       </>
     );
   }
@@ -40,7 +39,7 @@ ManageCoursePage.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    course: state.courses,
+    courses: state.courses,
     authors: state.authors
   };
 }
