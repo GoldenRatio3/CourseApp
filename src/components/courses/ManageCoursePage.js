@@ -5,6 +5,7 @@ import { loadAuthors } from "../../redux/actions/authorActions";
 import PropTypes from "prop-types";
 import CourseForm from "./CourseForm";
 import { newCourse } from "../../../tools/mockData";
+import { getCourses } from "../../api/courseApi";
 
 function ManageCoursePage({
   courses,
@@ -23,6 +24,8 @@ function ManageCoursePage({
       loadCourses().catch(error => {
         alert("Loading courses failed " + error);
       });
+    } else {
+      setCourse({ ...props.course });
     }
 
     if (authors.length === 0) {
@@ -30,7 +33,7 @@ function ManageCoursePage({
         alert("Loading author failed " + error);
       });
     }
-  }, []);
+  }, [props.course]);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -68,9 +71,18 @@ ManageCoursePage.propTypes = {
   history: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state) {
+function getCourseBySlug(courses, slug) {
+  return courses.find(course => course.slug === slug) || null;
+}
+
+function mapStateToProps(state, ownProps) {
+  const slug = ownProps.match.params.slug;
+  const course =
+    slug && state.courses.length > 0
+      ? getCourseBySlug(state.courses, slug)
+      : newCourse;
   return {
-    course: newCourse,
+    course,
     courses: state.courses,
     authors: state.authors
   };
